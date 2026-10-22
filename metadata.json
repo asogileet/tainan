@@ -1,0 +1,6 @@
+{
+  "name": "府城天際光影 · 台南無人機燈光秀模擬器",
+  "description": "運用 CSS 動畫與 keyframes 模擬無人機群飛燈光秀，精密呈現台南孔廟大成殿飛簷、全臺首學匾額、1624 熱蘭遮城稜堡與台南400鳳凰花等經典歷史文化意象。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #030712;
+    color: #F8FAFC;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif-tc {
+    font-family: 'Noto Serif TC', 'Cinzel', serif;
+  }
+
+  .font-mono-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* -------------------------------------------------------------
+   DRONE FLIGHT & LIGHTING CSS KEYFRAMES
+   ------------------------------------------------------------- */
+
+/* 1. Organic micro-wobble in position (simulating wind resistance & hovering physics) */
+@keyframes droneHoverWobble {
+  0% {
+    transform: translate3d(var(--tx, 0), var(--ty, 0), var(--tz, 0)) scale(var(--scale, 1));
+  }
+  33% {
+    transform: translate3d(calc(var(--tx, 0) + 1.2px), calc(var(--ty, 0) - 1.8px), calc(var(--tz, 0) + 2px)) scale(calc(var(--scale, 1) * 1.05));
+  }
+  66% {
+    transform: translate3d(calc(var(--tx, 0) - 1.5px), calc(var(--ty, 0) + 1.2px), calc(var(--tz, 0) - 2px)) scale(calc(var(--scale, 1) * 0.96));
+  }
+  100% {
+    transform: translate3d(var(--tx, 0), var(--ty, 0), var(--tz, 0)) scale(var(--scale, 1));
+  }
+}
+
+/* 2. Drone Light Breathing Glow */
+@keyframes droneGlowPulse {
+  0%, 100% {
+    opacity: calc(var(--base-brightness, 1) * 0.82);
+    box-shadow: 0 0 calc(6px * var(--glow-mult, 1)) var(--glow-color, #F59E0B),
+                0 0 calc(14px * var(--glow-mult, 1)) var(--glow-color, #F59E0B);
+  }
+  50% {
+    opacity: calc(var(--base-brightness, 1) * 1.2);
+    box-shadow: 0 0 calc(12px * var(--glow-mult, 1)) var(--glow-color, #F59E0B),
+                0 0 calc(24px * var(--glow-mult, 1)) var(--glow-color, #F59E0B),
+                0 0 calc(36px * var(--glow-mult, 1)) var(--glow-color, #F59E0B);
+  }
+}
+
+/* 3. High-Frequency Drone Aviation Strobe (Double flash) */
+@keyframes droneAviationStrobe {
+  0%, 15%, 35%, 100% {
+    opacity: calc(var(--base-brightness, 1) * 0.7);
+    filter: brightness(1);
+    box-shadow: 0 0 6px var(--glow-color, #fff);
+  }
+  20%, 26% {
+    opacity: 1.5;
+    filter: brightness(2.2);
+    box-shadow: 0 0 16px var(--glow-color, #fff), 0 0 28px #ffffff;
+  }
+}
+
+/* 4. Color Cycles by Scheme */
+@keyframes cycleHeritage {
+  0%, 100% {
+    background-color: #EF4444;
+    box-shadow: 0 0 10px #DC2626, 0 0 20px #991B1B;
+  }
+  33% {
+    background-color: #F59E0B;
+    box-shadow: 0 0 12px #D97706, 0 0 22px #B45309;
+  }
+  66% {
+    background-color: #FEF08A;
+    box-shadow: 0 0 14px #EAB308, 0 0 26px #CA8A04;
+  }
+}
+
+@keyframes cycleZeelandia {
+  0%, 100% {
+    background-color: #38BDF8;
+    box-shadow: 0 0 12px #0284C7, 0 0 22px #0369A1;
+  }
+  33% {
+    background-color: #F8FAFC;
+    box-shadow: 0 0 14px #E0F2FE, 0 0 26px #BAE6FD;
+  }
+  66% {
+    background-color: #E11D48;
+    box-shadow: 0 0 12px #BE123C, 0 0 22px #9F1239;
+  }
+}
+
+@keyframes cycleCyber {
+  0%, 100% {
+    background-color: #A855F7;
+    box-shadow: 0 0 12px #9333EA, 0 0 24px #7E22CE;
+  }
+  33% {
+    background-color: #06B6D4;
+    box-shadow: 0 0 12px #0891B2, 0 0 24px #0E7490;
+  }
+  66% {
+    background-color: #F43F5E;
+    box-shadow: 0 0 12px #E11D48, 0 0 24px #BE123C;
+  }
+}
+
+@keyframes cycleFestive {
+  0%, 100% {
+    background-color: #FACC15;
+    box-shadow: 0 0 14px #EAB308, 0 0 26px #CA8A04;
+  }
+  25% {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 18px #FFFFFF, 0 0 32px #FEF08A;
+  }
+  50% {
+    background-color: #F97316;
+    box-shadow: 0 0 14px #EA580C, 0 0 24px #C2410C;
+  }
+  75% {
+    background-color: #FB7185;
+    box-shadow: 0 0 14px #F43F5E, 0 0 24px #E11D48;
+  }
+}
+
+/* 5. Rotating Beacon Light Beam (Anping Lighthouse) */
+@keyframes beaconRaySweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 6. Water Ripple Shimmer for Anping Harbor Reflection */
+@keyframes waterSurfaceWave {
+  0%, 100% {
+    transform: scaleY(1) translateY(0);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scaleY(1.15) translateY(-3px);
+    opacity: 0.85;
+  }
+}
+
+/* 7. Star twinkle */
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+}
+
+/* 8. Lantern gentle swing */
+@keyframes lanternBreathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.6));
+    opacity: 0.85;
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(249, 115, 22, 0.95));
+    opacity: 1;
+  }
+}
+
+/* Utility classes for drone nodes */
+.drone-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size, 6px);
+  height: var(--size, 6px);
+  margin-top: calc(var(--size, 6px) / -2);
+  margin-left: calc(var(--size, 6px) / -2);
+  border-radius: 9999px;
+  transform-origin: center center;
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.8s ease,
+              box-shadow 0.8s ease;
+  will-change: transform, box-shadow, opacity;
+  pointer-events: auto;
+}
+
+.drone-hover-active {
+  animation: droneHoverWobble 4s ease-in-out infinite;
+}
+
+.drone-pulse-active {
+  animation: droneGlowPulse var(--pulse-dur, 2s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.drone-strobe-active {
+  animation: droneAviationStrobe var(--strobe-dur, 1.4s) step-start infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.cycle-heritage-active {
+  animation: cycleHeritage 4.5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.cycle-zeelandia-active {
+  animation: cycleZeelandia 5.0s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.cycle-cyber-active {
+  animation: cycleCyber 4.0s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.cycle-festive-active {
+  animation: cycleFestive 3.2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* 3D Scene Perspective Container */
+.scene-3d-wrap {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+.scene-3d-stage {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
